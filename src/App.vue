@@ -55,8 +55,11 @@ export default {
   },
   methods: {
     getInfo() {
-      this.$http("/API/allNews")
+      this.$http("http://www.cdutzy.com/apis/API/allNews/")
         .then(result => {
+          console.log(result);
+          console.log(result);
+          console.log(result);
           this.$store.commit("setNowPage", result.data);
         },err => {
           console.log("get news info failed");

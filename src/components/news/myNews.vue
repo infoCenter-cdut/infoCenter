@@ -71,7 +71,7 @@ export default {
         // });
 
         //获取新闻文章内容，filename.slice(21)是/media/newspassage/+文章名
-        this.$http.get('/api'+ this.nowNew.content.slice(21)).then(res=>{
+        this.$http.get('http://www.cdutzy.com'+this.nowNew.content.slice(21)).then(res=>{
           // console.log(res);
           this.content = res.data;
           this.contentSlice = this.content.split(/\s\s+/g);

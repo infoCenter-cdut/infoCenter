@@ -28,7 +28,7 @@
             <a href="#" class="no-hover">邮箱：cdutxxzxjsb@163.com</a>
           </li>
           <li>
-            <a href="#" class="no-hover">备案号：粤ICP备17124202号-1</a>
+            <a href="http://www.beian.miit.gov.cn/" class="no-hover">备案号：粤ICP备17124202号</a>
           </li>
         </ul>
       </div>

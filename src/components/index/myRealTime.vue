@@ -132,7 +132,7 @@
           this.all.push(x);
         });
         this.nowShow = this.all.slice(0, 8);
-        console.log(this.nowShow);
+        // console.log(this.nowShow);
         
         this.$previewRefresh(); //图片异步加载需要执行此函数才能正常使用预览！！！
       },

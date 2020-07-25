@@ -1,4 +1,4 @@
-# infoCenter2.0dev(frontend)
+# infoCenter2.0prod(frontend)
 
 > freeStu of CDUT
 
