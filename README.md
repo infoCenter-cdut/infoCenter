@@ -1,2 +1,2 @@
-# infoCenter
-知涯的各个版本
+# infoCenter1.0
+知涯1.0

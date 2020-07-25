@@ -1,0 +1,328 @@
+{% extends 'career/template.html' %}
+{% load static from staticfiles %}
+{% block head %}
+    <script src="{% static 'career/js/jquery.min.js' %}"></script>
+    <script src="{% static 'career/js/echarts.min.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <style>
+        .displayData{
+            display: block;
+            width: 500px;
+            height: 400px;
+            list-style: none;
+            margin: 50px 0;
+        }
+    @media screen and (max-width: 500px){
+        .displayData{
+            left:-15px;
+            width: 400px;
+            height: 250px;
+        }
+    }
+    div,ul,li{
+        clear: none;
+    }
+    .findData{
+        cursor: pointer;
+    }
+    .search-box{
+        position: relative;
+        top:44px;
+        left: -95px;
+    }
+    </style>
+{% endblock head %}
+{% block body %}
+    <body class="blog list-style">
+        {% include 'career/nav.html' %}
+		<main role="main">
+			<div id="intro-wrap"  data-height="31.667">
+					<div id="intro" class="preload darken" data-autoplay="5000" data-navigation="true" data-pagination="true" data-transition="fadeUp">
+					<div class="intro-item "   style="background-image: url({% static 'career/img/dataImg/1.jpg' %});">
+						<div class="caption full">
+							<span style="font-size: 35px;font-weight: bolder; border: 2px solid white; padding: 5px 10px">Data exploring Department
+</span>
+                            <p>深入剖析问卷数据，掌握更为全面的就业形势
+</p>
+						</div><!-- caption -->
+					</div>
+                    <div class="intro-item " style="background-image: url({% static 'career/img/dataImg/2.jpg' %});">
+						<div class="caption full">
+							<span style="font-size: 35px;font-weight: bolder; border: 2px solid white; padding: 5px 10px">Data exploring Department
+</span>
+                            <p>深入剖析问卷数据，掌握更为全面的就业形势
+</p>
+						</div><!-- caption -->
+					</div>
+                    <div class="intro-item " style="background-image: url({% static 'career/img/dataImg/3.jpeg' %});">
+						<div class="caption full">
+							<span style="font-size: 35px;font-weight: bolder; border: 2px solid white; padding: 5px 10px">Data exploring Department
+</span>
+                            <p>深入剖析问卷数据，掌握更为全面的就业形势
+</p>
+						</div><!-- caption -->
+					</div>
+				</div><!-- intro -->
+			</div><!-- intro-wrap -->
+
+			<div id="main" class="row" style="background:#f5f5f5">
+				<div class="row-content buffer-left buffer-right buffer-bottom clear-after" >
+                    <div class="column nine">
+                        {% for t in dataTitile %}
+                            <h1 style="text-align: center" class="tittle">{{ t.Total_title }}</h1>
+                        {% endfor %}
+                        <div class="displayBox">
+                          
+                            <ul>
+                                {% if bar %}
+                                    {% for d in bar %}
+                                    <li id="echarts{{ d.data_type }}{{ d.id }}" class="displayData"></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if line %}
+                                    {% for d in line %}
+                                    <li id="echarts{{ d.data_type }}{{ d.id }}" class="displayData"></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if pie %}
+                                    {% for d in pie %}
+                                    <li id="echarts{{ d.data_type }}{{ d.id }}" class="displayData"></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if mix %}
+                                    {% for m in mix %}
+                                        <li id="echartsmix{{ m.id }}" class="displayData"></li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <script>
+                        {% if bar %}
+                            {% for d in bar %}
+                                var ecBar{{ d.id }} = echarts.init(document.getElementById('echarts{{ d.data_type }}{{ d.id }}')),
+                                    optionBar = {
+                                        title:{
+                                            text:"{{ d.bar_title }}"
+                                        },
+                                        tooltip : {
+                                            trigger: 'axis'
+                                        },
+                                        legend: {
+                                            data: ['{{ d.bar_legend }}'],
+                                            right: 10
+                                        },
+                                        xAxis: {
+                                            data: "{{ d.bar_axis }}".split(' ')
+                                        },
+                                        yAxis:{
+                                            type: 'value'
+                                        },
+                                        series: [{
+                                            name: "{{ d.bar_legend }}",
+                                            type: "{{ d.data_type }}",
+                                            markPoint : {
+                                                data : [
+                                                    {type : 'max', name: '最大值'},
+                                                    {type : 'min', name: '最小值'}
+                                                ]
+                                            },
+                                            data: "{{ d.bar_dataset }}".split(' '),
+                                            markLine : {
+                                                data : [
+                                                    {type : 'average', name : '平均值'}
+                                                ]
+                                            },
+                                        }]
+                                    };
+                                    ecBar{{ d.id }}.setOption(optionBar);
+                            {% endfor %}
+                        {% endif %}
+                        {% if line %}
+                            {% for d in line %}
+                                var ecLine{{ d.id }} = echarts.init(document.getElementById('echarts{{ d.data_type }}{{ d.id }}')),
+                                    optionLine = {
+                                        title:{
+                                            text:"{{ d.line_title }}"
+                                        },
+                                        tooltip : {
+                                            trigger: 'axis',
+                                        },
+                                        visualMap: [{
+                                            show: false,
+                                            type: 'continuous',
+                                            seriesIndex: 0,
+                                            min: 0,
+                                            max: 400
+                                        }, {
+                                            show: false,
+                                            type: 'continuous',
+                                            seriesIndex: 1,
+                                            dimension: 0,
+                                            min: 0,
+                                            max: "{{ d.line_dataset }}".split(' ').length - 1
+                                        }],
+                                        legend: {
+                                            data: ['{{ d.line_legend }}'],
+                                            right: 10
+                                        },
+                                        xAxis: {
+                                            data: "{{ d.line_axis }}".split(' ')
+                                        },
+                                        yAxis:{
+                                            type: 'value'
+                                        },
+                                        series: [{
+                                            name: "{{ d.line_legend }}",
+                                            type: "{{ d.data_type }}",
+                                            markPoint : {
+                                                data : [
+                                                    {type : 'max', name: '最大值'},
+                                                    {type : 'min', name: '最小值'}
+                                                ]
+                                            },
+                                            data: "{{ d.line_dataset }}".split(' '),
+                                            smooth: "{{ d.line_smth }}",
+                                        }]
+                                    };
+                                    ecLine{{ d.id }}.setOption(optionLine);
+                            {% endfor %}
+                        {% endif %}
+                        {% if pie %}
+                            {% for d in pie %}
+                                var ecPie{{ d.id }} = echarts.init(document.getElementById('echarts{{ d.data_type }}{{ d.id }}')),
+                                    optionPie = {
+                                        title:{
+                                            text:"{{ d.pie_title }}"
+                                        },
+                                        tooltip:{
+                                            {{ pie_tooltip }}
+                                        },
+                                        legend: {
+                                            orient:'vertical',/*图例垂直排列*/
+                                            data: '{{ d.pie_legend }}'.split(' '),
+                                            right: 10
+                                        },
+                                        avoidLabelOverlap: false,
+                                        label: {
+                                            normal: {
+                                                show: false,
+                                                position: 'left'
+                                            },
+                                            emphasis: {
+                                                show: true,
+                                                textStyle: {
+                                                    fontSize: '40',
+                                                    fontWeight: 'bold'
+                                                }
+                                            }
+                                        },
+                                        labelLine: {
+                                            normal: {
+                                                show: false
+                                            }
+                                        },
+                                        series: [{
+                                            radius: '{{ d.pie_radius }}',
+                                            name: "{{ d.pie_legend }}",
+                                            type: "{{ d.data_type }}",
+                                            markPoint : {
+                                                data : [
+                                                    {type : 'max', name: '最大值'},
+                                                    {type : 'min', name: '最小值'}
+                                                ]
+                                            },
+                                            data: dealData('{{ d.pie_dataset }}')
+                                        }]
+                                    };
+                                function dealData(data){
+                                   var data =  data.split(' '), i, res = [];
+                                   for(i in data){
+                                       var temp = data[i].replace('{','').replace('}','').split(',');
+                                       res.push({value:temp[0], name:temp[1]});
+                                   }
+                                   return res
+                                }
+                                    ecPie{{ d.id }}.setOption(optionPie);
+
+                            {% endfor %}
+                        {% endif %}
+                        {% if mix %}
+                            {% for m in mix %}
+                                var ecMix{{ m.id }} = echarts.init(document.getElementById('echartsmix{{ m.id }}')),
+                                    option = {{ m.code | safe }};
+                                ecMix{{ m.id }}.setOption(option);
+                            {% endfor %}
+                        {% endif %}
+                    </script>
+                <aside role="complementary" class="sidebar column three last">
+						<div>
+                            <div class="widget widget_search">
+                            <select class="js-exmaple-basic-single chooseTime" style="width:180px;">
+
+                                {% for i in timeList %}
+                                    <option class=" select-label">{{ i.bar_time}} 双选会数据</option>
+                                {% endfor %}
+                            </select>
+                            <i class="icon icon-search small findData "></i>
+                            </div>
+                            <div class="widget">
+							    <h4>关于数据分析</h4>
+                                <div class="textwidget">
+                                    我们致力于收集各类有关毕业生就业的问题，并制定了一系列的专业问卷获取信息
+通过对收集到的数据进行专业的数据处理和分析，找出企业和学生在思考方式之间的差距，并对其进行可视化展示
+以最专业的态度和技术，做最通俗易懂的数据分析
+                                </div><!-- la class="textwidget" è forse generata automaticamente da wp -->
+                            </div>
+                            <div class="widget">
+                                <h4>热点资讯</h4>
+                                <ul class="plain">
+                                    {% if news %}
+                                        {% for n in news %}
+                                        <li style="list-style: square"><a href="/news/{{ n.id }}">{{ n.title }}</a></li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>暂无资讯</span>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h4>就业杂志</h4>
+                                <ul class="plain">
+                                    {% if maga %}
+                                        {% for m in maga %}
+                                        <li>
+                                            <a href="#" style="text-decoration: none">
+                                                <a href="media/{{ MEDIA_URL }}{{ m.magazine }}"><img src="media/{{ MEDIA_URL }}{{ m.cover }}" alt=""></a>
+                                                <span><a href="media/{{ MEDIA_URL }}{{ m.magazine }}" style="text-decoration: none">{{ m.title }}</a></span>
+                                            </a>
+                                        </li>
+                                        <br>
+                                        {% endfor %}
+                                    {% else %}
+                                        <span>暂无杂志</span>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h5>广告位招租</h5>
+                            </div>
+                            <script>
+                                $('.js-exmaple-basic-single').select2();
+                                $('.findData').click(function () {
+                                    time = $('.chooseTime option:selected').val().split(' ')[0].replace('年','').replace('月','').replace('日','');
+                                    console.log(time);
+                                    window.location.href = time;
+                                })
+
+                            </script>
+                        </div>
+                        <br>
+					</aside>
+				</div><!-- row-content -->
+			</div><!-- row -->
+		</main><!-- main -->
+    {% include 'career/footer.html' %}
+    </body>
+{% endblock body %}
