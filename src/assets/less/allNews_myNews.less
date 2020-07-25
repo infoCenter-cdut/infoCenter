@@ -1,0 +1,134 @@
+.video {
+  &-container {
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+  }
+  &-btn {
+    clear: none;
+    width: 100%;
+    padding-bottom: 5rem;
+    &-left {
+      float: left;
+      clear: none;
+    }
+    &-right {
+      float: right;
+      clear: none;
+    }
+  }
+  &-main {
+    width: 50%;
+    float: left;
+    position: relative;
+    margin-left: 10%;
+    @media screen and (max-width: 767px) {
+      width: 80%;
+      left: 10%;
+      float: none;
+      margin-left: 0;
+      position: relative;
+    }
+    &-item {
+      margin: 2rem 0;
+      padding-bottom: 2rem;
+      &-img {
+        float: left;
+        width: 20%;
+        border: 1px solid white;
+        border-radius: 2rem;
+        overflow: hidden;
+        @media screen and (max-width: 767px) {
+          float: none;
+          width: 100%;
+        }
+      }
+      &-title {
+        margin-top: -1.5rem;
+        margin-left: 1rem;
+        float: left;
+        clear: none;
+        color: #ccc;
+        font-size: 0.8rem;
+        a {
+          color: #ccc;
+        }
+        @media screen and (max-width: 767px) {
+          float: none;
+        }
+      }
+      border-bottom: 1px solid #ccc;
+    }
+  }
+  &-aside {
+    width: 25%;
+    float: right;
+    clear: none;
+    margin-right: 10%;
+    @media screen and (max-width: 767px) {
+      float: none;
+      width: 80%;
+      margin-right: 0;
+    }
+    &-magazine {
+      margin-top: 3rem;
+      position: relative;
+      left: 2rem;
+      h4 {
+        color: #ccc;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      img {
+        width: 10rem;
+        height: 6rem;
+      }
+    }
+    &-about {
+      margin-top: 3rem;
+      position: relative;
+      left: 2rem;
+      padding-right: 2rem;
+      h4 {
+        color: #ccc;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+    &-search {
+      margin-top: 3rem;
+      input {
+        padding-left: 3.077em;
+        width: 20rem;
+        border: 1px solid #ddd;
+        border-radius: 1.538em;
+        transform: scale(0.8);
+
+        @media screen and (max-width: 767px) {
+          width: 15rem;
+          height: 2rem;
+          transform: scale(1);
+          margin-left: 10%;
+        }
+      }
+
+      .pre-input {
+        position: absolute;
+        transform: scale(0.4);
+        margin-top: -1rem;
+        margin-left: 2rem;
+        filter: opacity(0.4);
+        z-index: 999;
+        @media screen and (max-width: 767px) {
+          margin-left: 10%;
+          margin-top: -1.2rem;
+        }
+      }
+    }
+  }
+}

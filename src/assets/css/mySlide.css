@@ -1,0 +1,76 @@
+@keyframes myAniIn {
+  from {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes myAniOut {
+  from {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.myAniIn {
+  animation-name: myAniIn;
+  animation-duration: 0.5s;
+}
+
+.myAniOut {
+  animation-name: myAniOut;
+  animation-duration: 0.5s;
+}
+
+@keyframes titleIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes source {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.myAniSourceIn {
+  animation: source 0.5s linear 0.5s;
+}
+
+.myAniTitleIn {
+  animation: titleIn 0.5s linear 0s;
+}
+
+.myAniRdIn {
+  animation-name: titleIn;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.myAniRdIn :hover {
+  background-color: white;
+  color: black;
+}
