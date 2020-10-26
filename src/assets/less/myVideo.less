@@ -1,0 +1,159 @@
+.video {
+  &-container {
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+  }
+  &-btn {
+    clear: none;
+    width: 100%;
+    padding-bottom: 5rem;
+    &-left {
+      float: left;
+      clear: none;
+    }
+    &-right {
+      float: right;
+      clear: none;
+    }
+  }
+  &-main {
+    width: 57%;
+    float: left;
+    position: relative;
+    margin-left: 8%;
+    @media screen and (max-width: 767px) {
+      width: 80%;
+      left: 10%;
+      float: none;
+      margin-left: 0;
+      position: relative;
+    }
+    &-item {
+      margin: 2rem 0;
+      padding-bottom: 2rem;
+      &-info {
+        margin-top: -1rem;
+      }
+      &-img {
+        float: left;
+        width: 20%;
+        border: 1px solid white;
+        border-radius: 30%;
+        overflow: hidden;
+        width: 25%;
+        @media screen and (max-width: 767px) {
+          float: none;
+          width: 100%;
+        }
+      }
+      &-title {
+        width: 70%;
+        margin-top: -2.2rem;
+        margin-left: 1rem;
+        float: left;
+        clear: none;
+        color: #ccc;
+        font-size: 0.8rem;
+        transition: color 0.5s ease;
+        p {
+          color: black;
+          font-size: 1rem;
+        }
+        a {
+          color: #ccc;
+          transition: color 0.5s ease;
+          margin: 0;
+        }
+        @media screen and (max-width: 767px) {
+          float: none;
+          width: 100%;
+        }
+      }
+      border-bottom: 1px solid #ccc;
+    }
+  }
+  &-aside {
+    width: 20%;
+    float: right;
+    position: relative;
+    clear: none;
+    margin-right: 15%;
+    margin-top: -2rem;
+    @media screen and (max-width: 767px) {
+      float: none;
+      width: 80%;
+      left: 10%;
+      margin-right: 0;
+    }
+    &-magazine {
+      margin-top: 3rem;
+      position: relative;
+      left: 2rem;
+      @media screen and (max-width: 767px) {
+        left: 0;
+      }
+      h4 {
+        color: #ccc;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      img {
+        width: 10rem;
+        height: 6rem;
+      }
+    }
+    &-about {
+      margin-top: 3rem;
+      position: relative;
+      left: 2rem;
+      @media screen and (max-width: 767px) {
+        left: 0;
+      }
+      padding-right: 2rem;
+      h4 {
+        color: #ccc;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+    &-search {
+      // width: 80%;
+      position: relative;
+      margin-top: 3rem;
+      // left: 2rem;
+      input {
+        padding-left: 3.077em;
+        width: 20rem;
+        border: 1px solid #ddd;
+        border-radius: 1.538em;
+        transform: scale(0.8);
+
+        @media screen and (max-width: 767px) {
+          width: 15rem;
+          height: 2rem;
+          transform: scale(1);
+          // padding-left: 5%;
+        }
+      }
+
+      .pre-input {
+        position: absolute;
+        transform: scale(0.4);
+        margin-top: -1rem;
+        margin-left: 2rem;
+        filter: opacity(0.4);
+        z-index: 999;
+        @media screen and (max-width: 767px) {
+          margin-left: 0;
+          margin-top: -1.2rem;
+        }
+      }
+    }
+  }
+}
